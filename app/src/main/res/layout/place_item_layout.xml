@@ -26,7 +26,7 @@
             android:textSize="24sp"
             />
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/place_user_rating_textview"
+            android:id="@+id/place_item_user_rating_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/place_item_name"

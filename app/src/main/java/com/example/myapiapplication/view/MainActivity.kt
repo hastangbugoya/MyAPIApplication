@@ -1,22 +1,24 @@
 package com.example.myapiapplication.view
 
 import android.content.Context
+import android.location.Address
+import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myapiapplication.R
+import com.example.myapiapplication.model.Result
 import com.example.myapiapplication.util.Constants.Companion.LogKitty
 import com.example.myapiapplication.util.State
 import com.example.myapiapplication.viewmodel.MyLocationListener
 import com.example.myapiapplication.viewmodel.PlacesViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,15 +28,22 @@ class MainActivity : AppCompatActivity() {
     val categoryList: List<String> = listOf("restaurant", "school", "church")
     private var currentCategory: String = categoryList[0]
     private lateinit var currentLocation : Location
+    //Recycler
+    private lateinit var placesRecycler: RecyclerView
+    lateinit var placesRecyclerAdapter: PlacesRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val mySpinner: Spinner = findViewById(R.id.category_spinner)
-        LogKitty("Hello")
-        //assign view to spinner
-        placesCategorySpinner = findViewById(category_spinner.id)
 
+        //Recycler
+        placesRecycler = findViewById(R.id.places_recyclerview)
+        placesRecyclerAdapter = PlacesRecyclerAdapter()
+        placesRecycler.adapter = placesRecyclerAdapter
+
+        //assign view to spinner
+        val mySpinner: Spinner = findViewById(R.id.category_spinner)
+        placesCategorySpinner = findViewById(category_spinner.id)
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
         val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
@@ -50,12 +59,11 @@ class MainActivity : AppCompatActivity() {
         //observe and whenever liveData changes do these
         viewModel.liveData.observe(this, {
 //            <Type>! : They're called platform types and they mean that Kotlin doesn't know whether that value can or cannot be null and it's up to you to decide if it's nullable or not
-            LogKitty("observe")
             LogKitty(it.size.toString())
-            for (place in it) {
-                LogKitty(place.name)
-            }
-
+//            for (place in it) {
+//                LogKitty(place.name)
+//            }
+            this.placesRecyclerAdapter.updateList(it.toMutableList())
         })
 
         viewModel.statusData.observe(this,{
@@ -67,6 +75,11 @@ class MainActivity : AppCompatActivity() {
             }
             status_progressbar.visibility = View.GONE
         })
+
+        fun updateList(list: MutableList<Result>)
+        {
+
+        }
 
         placesCategorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -105,6 +118,10 @@ class MainActivity : AppCompatActivity() {
     )
 
     private fun makeApiCall(location: Location, category: String) {
+        Geocoder(this, Locale.getDefault()).getFromLocation(location.latitude, location.longitude, 1)
+                .also { it[0].getAddressLine(0).let { add ->
+                    findViewById<TextView>(R.id.current_address_textview).text = add
+                }}
         currentLocation = location
         viewModel.getPlacesNearMe(location,category)
     }
