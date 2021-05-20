@@ -52,7 +52,6 @@
         tools:targetApi="LOLLIPOP"
         android:padding="16dp"
         tools:text="Places Category"
-        android:layout_marginBottom="16dp"
         android:background="@drawable/spinner_background"
         />
     <androidx.recyclerview.widget.RecyclerView
@@ -65,5 +64,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
+        android:layout_marginTop="24dp"
         tools:listitem="@layout/place_item_layout"/>
   </androidx.constraintlayout.widget.ConstraintLayout>
