@@ -39,8 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         //Recycler
         placesRecycler = findViewById(R.id.places_recyclerview)
-        placesRecyclerAdapter = PlacesRecyclerAdapter()
-        placesRecycler.adapter = placesRecyclerAdapter
+        placesRecycler.adapter = PlacesRecyclerAdapter()
 
         //assign view to spinner
         val mySpinner: Spinner = findViewById(R.id.category_spinner)
@@ -54,12 +53,7 @@ class MainActivity : AppCompatActivity() {
             android.R.layout.simple_spinner_item, categoryList
         )*/
 
-
-
-
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-
-
 
         //observe and whenever liveData changes do these
         viewModel.liveData.observe(this, {
