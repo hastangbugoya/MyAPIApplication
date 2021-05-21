@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var locationManager: LocationManager //Provides access to the system location services
     private val viewModel: PlacesViewModel by viewModels<PlacesViewModel>()
     lateinit var placesCategorySpinner: Spinner
-    val categoryList: List<String> = listOf("restaurant", "school", "church")
+    val categoryList: List<String> = listOf("restaurant", "school", "church", "library", "atm", "park", "police")
     private var currentCategory: String = categoryList[0]
     private lateinit var currentLocation : Location
     //Recycler
