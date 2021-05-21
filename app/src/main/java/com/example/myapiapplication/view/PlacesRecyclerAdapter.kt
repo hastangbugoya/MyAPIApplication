@@ -1,7 +1,6 @@
 package com.example.myapiapplication.view
 
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -11,9 +10,9 @@ import com.example.myapiapplication.model.Result
 
 class PlacesRecyclerAdapter : RecyclerView.Adapter<PlacesRecyclerAdapter.PlacesViewHolder>() {
 
-    var placesList: List<Result> = mutableListOf()
+    private var placesList: List<Result> = mutableListOf()
 
-    public fun updateList(list: MutableList<Result>) {
+    fun updateList(list: MutableList<Result>) {
         placesList = list
         notifyDataSetChanged()
     }
@@ -30,7 +29,7 @@ class PlacesRecyclerAdapter : RecyclerView.Adapter<PlacesRecyclerAdapter.PlacesV
         cuurentPlace.let {
             holder.itemView.apply {
                 this.findViewById<TextView>(R.id.place_item_name).text = it.name
-                this.findViewById<TextView>(R.id.place_item_user_rating_textview).text = it.rating.toString() + " out of 5 Stars"
+                this.findViewById<TextView>(R.id.place_item_user_rating_textview).text = String.format(context.getString(R.string.ratings_format),it.rating)
             }
         }
     }

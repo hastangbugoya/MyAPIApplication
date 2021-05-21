@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyAPIApplication</string>
+    <string name="ratings_format">%.02f out of 5 Stars</string>
 </resources>

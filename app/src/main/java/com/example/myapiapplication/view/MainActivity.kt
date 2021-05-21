@@ -68,12 +68,11 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.statusData.observe(this,{
             when(it){
-                State.LOADING -> {}
-                State.SUCCESS -> {}
+                State.LOADING -> {status_progressbar.visibility = View.VISIBLE}
+                State.SUCCESS -> {status_progressbar.visibility = View.GONE}
                 State.ERROR -> displayErrorMessage()
                 else -> {}
             }
-            status_progressbar.visibility = View.GONE
         })
 
         fun updateList(list: MutableList<Result>)
