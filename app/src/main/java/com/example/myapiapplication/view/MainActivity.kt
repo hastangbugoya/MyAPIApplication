@@ -24,13 +24,14 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var locationManager: LocationManager //Provides access to the system location services
     private val viewModel: PlacesViewModel by viewModels<PlacesViewModel>()
+    private lateinit var currentLocation : Location
+    //Spinner
     lateinit var placesCategorySpinner: Spinner
     val categoryList: List<String> = listOf("restaurant", "school", "church", "library", "atm", "park", "police")
     private var currentCategory: String = categoryList[0]
-    private lateinit var currentLocation : Location
     //Recycler
     private lateinit var placesRecycler: RecyclerView
-    lateinit var placesRecyclerAdapter: PlacesRecyclerAdapter
+    private lateinit var placesRecyclerAdapter: PlacesRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,17 +45,21 @@ class MainActivity : AppCompatActivity() {
         //assign view to spinner
         val mySpinner: Spinner = findViewById(R.id.category_spinner)
         placesCategorySpinner = findViewById(category_spinner.id)
+        val categorySpinnerAdapter = ArrayAdapter(this,
+            android.R.layout.simple_spinner_dropdown_item, categoryList) //setup adapter (if fragment??? {requireContext() or requireActivity() instead of this or activity)
+        placesCategorySpinner.adapter = categorySpinnerAdapter
+/*      ALTERNATE LYRICS
+        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
+            this,
+            android.R.layout.simple_spinner_item, categoryList
+        )*/
+
+
+
+
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
-        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_spinner_item, categoryList
-        )
 
-        //setup adapter (fragment??? {requireContext() or requireActivity() instead of this or activity)
-        val categorySpinnerAdapter = ArrayAdapter(this,
-            android.R.layout.simple_spinner_dropdown_item, categoryList)
-        placesCategorySpinner.adapter = categorySpinnerAdapter
 
         //observe and whenever liveData changes do these
         viewModel.liveData.observe(this, {
@@ -75,22 +80,17 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        fun updateList(list: MutableList<Result>)
-        {
-
-        }
-
         placesCategorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                currentCategory = categoryList[position]
-                Toast.makeText(parent?.context, currentCategory,Toast.LENGTH_SHORT).show()
-                makeApiCall(currentLocation,currentCategory)
+//                currentCategory = categoryList[position]
+                makeApiCall(currentLocation,categoryList[position]
+                    .also {
+                    currentCategory = it  }
+                )
             }
-
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 TODO("Not yet implemented")
             }
-
         }
     }
 

@@ -30,6 +30,7 @@ class PlacesRecyclerAdapter : RecyclerView.Adapter<PlacesRecyclerAdapter.PlacesV
             holder.itemView.apply {
                 this.findViewById<TextView>(R.id.place_item_name).text = it.name
                 this.findViewById<TextView>(R.id.place_item_user_rating_textview).text = String.format(context.getString(R.string.ratings_format),it.rating)
+                this.findViewById<TextView>(R.id.street_address_textview).text = it.vicinity
             }
         }
     }

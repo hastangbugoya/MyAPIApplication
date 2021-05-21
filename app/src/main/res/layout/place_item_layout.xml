@@ -6,13 +6,13 @@
     android:id="@+id/place_item_cardview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="4dp"
-    android:background="@drawable/place_item_cardview_background">
+    android:layout_marginBottom="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/place_item_constraint"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/place_item_cardview_background">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/place_item_name"
@@ -21,17 +21,34 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:padding="16dp"
+            android:paddingTop="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="4dp"
             tools:text="Place Name"
             android:background="@color/purple_700"
             android:textColor="@color/white"
+            />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/street_address_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/place_item_name"
+            app:layout_constraintBottom_toTopOf="@id/place_item_user_rating_textview"
+            android:background="@color/purple_700"
+            android:textColor="@color/white"
+            android:layout_margin="0dp"
+            tools:text="9999 Street City State Zip"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
             />
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/place_item_user_rating_textview"
             style="@style/ratings_text_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/place_item_name"
+            app:layout_constraintTop_toBottomOf="@id/street_address_textview"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:padding="16dp"
