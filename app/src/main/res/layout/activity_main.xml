@@ -34,13 +34,14 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/current_address_textview"
+        style="@style/current_address_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="16dp"
-        android:drawableLeft="@drawable/ic_my_location_on_24"
+        android:drawableStart="@drawable/ic_my_location_on_32"
         tools:text="9999 Street Street, City City, STATE 99999"/>
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/category_spinner"

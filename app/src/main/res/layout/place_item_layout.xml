@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    app:cardElevation="3dp"
     android:id="@+id/place_item_cardview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -15,6 +16,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/place_item_name"
+            style="@style/place_item_name_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
@@ -23,10 +25,10 @@
             tools:text="Place Name"
             android:background="@color/purple_700"
             android:textColor="@color/white"
-            android:textSize="24sp"
             />
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/place_item_user_rating_textview"
+            style="@style/ratings_text_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/place_item_name"

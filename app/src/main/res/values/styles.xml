@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="current_address_style">
+        <item name="fontFamily">@font/firasans_bold</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+    <style name="place_item_name_style">
+        <item name="android:textSize">24sp</item>
+        <item name="fontFamily">@font/kanit_regular</item>
+    </style>
+    <style name="ratings_text_style">
+        <item name="android:textSize">24sp</item>
+        <item name="fontFamily">@font/bebasneue_regular</item>
+    </style>
+    <style name="spinner_text_style">
+        <item name="android:textSize">32sp</item>
+        <item name="fontFamily">@font/bebasneue_regular</item>
+    </style>
+
+</resources>

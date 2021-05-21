@@ -30,7 +30,7 @@ class PlacesRecyclerAdapter : RecyclerView.Adapter<PlacesRecyclerAdapter.PlacesV
         cuurentPlace.let {
             holder.itemView.apply {
                 this.findViewById<TextView>(R.id.place_item_name).text = it.name
-                this.findViewById<TextView>(R.id.place_item_user_rating_textview).text = it.user_ratings_total.toString()
+                this.findViewById<TextView>(R.id.place_item_user_rating_textview).text = it.rating.toString() + " out of 5 Stars"
             }
         }
     }
